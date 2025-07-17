@@ -1,0 +1,46 @@
+# Byte-compiled / optimized / compiled files
+__pycache__/
+*.pyc
+*.pyd
+*.pyo
+*.egg-info/
+.eggs/
+
+# Distribution / packaging
+dist/
+build/
+*.egg
+
+# Virtual environment
+venv/
+.venv/
+env/
+.env/
+
+# Editor-specific files
+.idea/  # IntelliJ IDEA / PyCharm
+.vscode/ # VS Code
+*.swp   # Vim swap files
+*~      # Emacs backup files
+.DS_Store # macOS specific
+
+# IPython Notebook
+.ipynb_checkpoints/
+
+# Tests
+.pytest_cache/
+.coverage
+
+# Miscellaneous
+.DS_Store
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+htmlcov/
+.tox/
+.mypy_cache/
+.ruff_cache/
+.nox/
+
+# Source
+*.py
