@@ -41,6 +41,9 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 .nox/
+.vscode
 
 # Source
 *.py
+README_dev.md
+requirements.txt
