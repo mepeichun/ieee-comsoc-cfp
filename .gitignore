@@ -16,6 +16,8 @@ venv/
 .venv/
 env/
 .env/
+.env
+.cfp-env
 
 # Editor-specific files
 .idea/  # IntelliJ IDEA / PyCharm
@@ -30,20 +32,28 @@ env/
 # Tests
 .pytest_cache/
 .coverage
+.vscode
 
 # Miscellaneous
 .DS_Store
 .Python
 pip-log.txt
 pip-delete-this-directory.txt
+cfp.log
+cfp.pid
 htmlcov/
 .tox/
 .mypy_cache/
 .ruff_cache/
 .nox/
-.vscode
 
-# Source
+# Temporary local dependency directory used during development
+.test-deps/
+
+
 *.py
+*.json
+*.txt
 README_dev.md
-requirements.txt
+
+

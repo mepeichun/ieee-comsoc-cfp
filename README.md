@@ -1,23 +1,34 @@
-# IEEE ComSoc Call for Papers (CFP) Tracker
+# Academic Call for Papers Tracker
 
-📢 **Live Tracker:** [https://mepeichun.github.io/ieee-comsoc-cfp/](https://mepeichun.github.io/ieee-comsoc-cfp/)  
+Live site: <https://mepeichun.github.io/ieee-comsoc-cfp/>
 
-## 📌 Overview  
-A curated collection of **Call for Papers (CFP)** for special issues across IEEE Communications Society’s premier journals and magazines, updated regularly.  
+This project collects special-issue calls for papers from selected engineering
+and science journals and magazines and generates a sortable static HTML page.
+The interface groups sources into IEEE ComSoc, IEEE Computer Society, and
+other publishers.
 
----
+## Supported publications
 
-## ✨ Key Features  
+### IEEE Communications Society
 
-### 📅 Deadline Tracking  
-- Never miss important submission deadlines with highlighted dates.  
+- IEEE Communications Magazine
+- IEEE Network
+- IEEE Wireless Communications
+- IEEE Internet of Things Magazine
+- IEEE Journal on Selected Areas in Communications
+- IEEE Transactions on Cognitive Communications and Networking
+- IEEE Transactions on Green Communications and Networking
+- IEEE Transactions on Network Science and Engineering
+- IEEE Transactions on Network and Service Management
+- IEEE Internet of Things Journal
 
-### 🏆 Premier Journal Coverage  
-Comprehensive listings for top-tier publications, including:  
-   - IEEE Communications Magazine (CommMag)
-   - IEEE Network (NetMag)
-   - IEEE Wireless Communications (WCM)
-   - IEEE Internet of Things Magazine
-   - IEEE Journal on Selected Areas in Communications (JSAC)
-   - IEEE Transactions series (TCCN, TGCN, TNSE, TNSM)
-   - IEEE Internet of Things Journal
+### IEEE Computer Society
+
+The tracker collects all journal CFPs from the IEEE Computer
+Society.
+
+### Other publishers and societies
+
+- IEEE Transactions on Vehicular Technology (TVT)
+- *npj Wireless Technology*
+

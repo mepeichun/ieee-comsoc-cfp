@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>IEEE ComSoc - Call for Papers</title>
+    <title>Academic Call for Papers Tracker</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
           rel="stylesheet">
     <link rel="stylesheet"
@@ -12,33 +12,106 @@
           href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css">
     <style>
         :root {
-            --primary: #00629b;
-            --accent: #ff6d00;
-            --text: #333;
+            --primary: #075985;
+            --primary-dark: #0c3654;
+            --accent: #f59e0b;
+            --ink: #172033;
+            --muted: #64748b;
+            --surface: #fff;
+            --line: #dbe4ee;
         }
         body {
-            background: #f8f9fa;
-            color: var(--text);
+            background: #f4f7fa;
+            color: var(--ink);
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         }
-        .header, .footer {
-            background: var(--primary);
+        .header {
+            background: linear-gradient(125deg, var(--primary-dark), var(--primary));
             color: white;
         }
         .header {
-            border-bottom: 5px solid var(--accent);
+            padding: 3rem 0 2.75rem;
+        }
+        .eyebrow {
+            color: #bae6fd;
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .14em;
+            margin-bottom: .6rem;
+            text-transform: uppercase;
+        }
+        .header h1 {
+            font-size: clamp(2rem, 5vw, 3.25rem);
+            font-weight: 750;
+            letter-spacing: -.035em;
+        }
+        .header-copy {
+            color: #dbeafe;
+            font-size: 1.08rem;
+            margin: .75rem 0 0;
+            max-width: 680px;
+        }
+        .collection-nav-wrap {
+            background: var(--surface);
+            border-bottom: 1px solid var(--line);
+            box-shadow: 0 4px 18px rgb(15 23 42 / 6%);
             margin-bottom: 2rem;
-            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .collection-nav {
+            display: flex;
+            gap: .25rem;
+            overflow-x: auto;
+        }
+        .collection-tab {
+            background: transparent;
+            border: 0;
+            border-bottom: 3px solid transparent;
+            color: var(--muted);
+            flex: 0 0 auto;
+            font-weight: 650;
+            padding: 1.05rem 1.25rem .9rem;
+        }
+        .collection-tab:hover, .collection-tab:focus-visible {
+            color: var(--primary);
+        }
+        .collection-tab.active {
+            border-bottom-color: var(--accent);
+            color: var(--primary-dark);
+        }
+        .collection-intro {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.25rem;
+        }
+        .collection-intro p {
+            color: var(--muted);
+            margin: 0;
+        }
+        .collection-intro span {
+            background: #e0f2fe;
+            border-radius: 999px;
+            color: var(--primary);
+            flex: 0 0 auto;
+            font-size: .8rem;
+            font-weight: 700;
+            margin-left: 1rem;
+            padding: .3rem .7rem;
         }
         .journal-section {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgb(0 0 0 / 10%);
-            margin-bottom: 3rem;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgb(15 23 42 / 5%);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
             padding: 1.5rem;
         }
         .journal-title {
-            border-bottom: 2px solid #eee;
+            border-bottom: 1px solid var(--line);
             color: var(--primary);
             margin-bottom: 1.5rem;
             padding-bottom: .5rem;
@@ -51,31 +124,90 @@
             background: var(--primary);
             color: white;
         }
+        .table a {
+            color: var(--primary);
+            font-weight: 550;
+            text-decoration: none;
+        }
+        .table a:hover { text-decoration: underline; }
         .deadline-soon {
             color: #d9534f;
             font-weight: bold;
         }
+        .empty-state {
+            background: var(--surface);
+            border: 1px dashed #b8c7d6;
+            border-radius: 12px;
+            color: var(--muted);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .empty-state i { color: #94a3b8; font-size: 2rem; }
+        .empty-state h2 { color: var(--ink); font-size: 1.35rem; margin-top: 1rem; }
         .footer {
+            border-top: 1px solid var(--line);
+            color: var(--muted);
             margin-top: 3rem;
-            padding: 1.5rem 0;
+            padding: 1.5rem 0 2rem;
             text-align: center;
         }
         .last-update {
-            color: #777;
+            color: var(--muted);
+            font-size: .9rem;
             margin-bottom: 1.5rem;
+        }
+        @media (max-width: 768px) {
+            .header { padding: 2.25rem 0 2rem; }
+            .collection-intro { align-items: flex-start; }
+            .journal-section { padding: 1rem; }
         }
     </style>
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <h1><i class="fas fa-book-open"></i> IEEE ComSoc Call for Papers</h1>
-            <p class="mb-0">Special Issues &amp; Upcoming Deadlines</p>
+            <p class="eyebrow">Research opportunity tracker</p>
+            <h1>Academic Call for Papers</h1>
+            <p class="header-copy">Discover special issues and upcoming submission
+                deadlines across leading engineering and science publications.</p>
         </div>
     </header>
+    <nav class="collection-nav-wrap" aria-label="Publication collections">
+        <div class="container">
+            <div class="collection-nav" role="tablist">
+                
+            <button id="tab-comsoc" class="collection-tab active"
+                    type="button" role="tab" aria-controls="panel-comsoc"
+                    aria-selected="true"
+                    data-target="comsoc">
+                IEEE ComSoc
+            </button>
+            <button id="tab-computer" class="collection-tab"
+                    type="button" role="tab" aria-controls="panel-computer"
+                    aria-selected="false"
+                    data-target="computer">
+                IEEE Computer Soc.
+            </button>
+            <button id="tab-others" class="collection-tab"
+                    type="button" role="tab" aria-controls="panel-others"
+                    aria-selected="false"
+                    data-target="others">
+                Others
+            </button>
+            </div>
+        </div>
+    </nav>
     <main class="container">
-        <p class="last-update">Last updated: 30 July 2026, 22:02 CST</p>
+        <p class="last-update">Last updated: 31 July 2026, 16:18 CST</p>
         
+        <section id="panel-comsoc" class="collection-panel"
+                 role="tabpanel" aria-labelledby="tab-comsoc"
+                 data-collection="comsoc">
+            <div class="collection-intro">
+                <p>Communications and networking journals and magazines.</p>
+                <span>10 publications</span>
+            </div>
+            
     <section class="journal-section">
         <h2 class="journal-title">
             <i class="fas fa-book"></i> IEEE Communications Magazine (CommMag)
@@ -586,11 +718,315 @@
             </table>
         </div>
     </section>
+        </section>
+        <section id="panel-computer" class="collection-panel"
+                 role="tabpanel" aria-labelledby="tab-computer"
+                 data-collection="computer" hidden>
+            <div class="collection-intro">
+                <p>Computer science and engineering publications.</p>
+                <span>3 publications</span>
+            </div>
+            
+    <section class="journal-section">
+        <h2 class="journal-title">
+            <i class="fas fa-book"></i> IEEE Transactions on Services Computing
+        </h2>
+        <div class="table-responsive">
+            <table id="table-10" class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-file-alt"></i> Paper Topic</th>
+                        <th><i class="fas fa-calendar-alt"></i> Submission Deadline</th>
+                        <th><i class="fas fa-users"></i> Guest Editors</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <tr>
+            <td><a href="https://www.computer.org/digital-library/journals/tsc/cfp-language-models-ecosystems-design" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Special Issue on Large Language Models in Service-Oriented Ecosystems Design: Advances and Applications
+            </a></td>
+            <td data-order="2026-10-31">
+                31 October 2026
+            </td>
+            <td>Boualem Benatallah, Massimiliano Garda, Ada Bagozi, Ilche Georgievski, Michael Sheng, Yingjie Wang</td>
+        </tr></tbody>
+            </table>
+        </div>
+    </section>
+    <section class="journal-section">
+        <h2 class="journal-title">
+            <i class="fas fa-book"></i> IEEE Transactions on Affective Computing
+        </h2>
+        <div class="table-responsive">
+            <table id="table-11" class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-file-alt"></i> Paper Topic</th>
+                        <th><i class="fas fa-calendar-alt"></i> Submission Deadline</th>
+                        <th><i class="fas fa-users"></i> Guest Editors</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <tr>
+            <td><a href="https://www.computer.org/digital-library/journals/ta/tac-multimodal-reasoning-language" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Special Issue on When Affective Computing Meets Multimodal Large And Reasoning Language Models
+            </a></td>
+            <td data-order="2026-12-30">
+                30 December 2026
+            </td>
+            <td></td>
+        </tr></tbody>
+            </table>
+        </div>
+    </section>
+    <section class="journal-section">
+        <h2 class="journal-title">
+            <i class="fas fa-book"></i> IEEE Transactions on Dependable and Secure Computing
+        </h2>
+        <div class="table-responsive">
+            <table id="table-12" class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-file-alt"></i> Paper Topic</th>
+                        <th><i class="fas fa-calendar-alt"></i> Submission Deadline</th>
+                        <th><i class="fas fa-users"></i> Guest Editors</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <tr>
+            <td><a href="https://www.computer.org/digital-library/journals/tq/cfp-safety-alignment-responsibility-language" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Special Issue on Safety, Alignment, and Responsibility of Large Language Models
+            </a></td>
+            <td data-order="2026-12-31">
+                31 December 2026
+            </td>
+            <td>Shuo Shang, Bin Yang, Christian S. Jensen, Panos Kalnis</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.computer.org/digital-library/journals/tq/cfp-trust-privacy-security-agentic-systems" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Special Issue on Trust, Privacy, and Security in Intelligent and Agentic Systems
+            </a></td>
+            <td data-order="2027-01-15">
+                15 January 2027
+            </td>
+            <td>Hongxin Hu, Elena Ferrari, Heiko Ludwig</td>
+        </tr></tbody>
+            </table>
+        </div>
+    </section>
+        </section>
+        <section id="panel-others" class="collection-panel"
+                 role="tabpanel" aria-labelledby="tab-others"
+                 data-collection="others" hidden>
+            <div class="collection-intro">
+                <p>Selected calls for papers from other publishers, including Nature.</p>
+                <span>2 publications</span>
+            </div>
+            
+    <section class="journal-section">
+        <h2 class="journal-title">
+            <i class="fas fa-book"></i> IEEE Transactions on Vehicular Technology (TVT)
+        </h2>
+        <div class="table-responsive">
+            <table id="table-13" class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-file-alt"></i> Paper Topic</th>
+                        <th><i class="fas fa-calendar-alt"></i> Submission Deadline</th>
+                        <th><i class="fas fa-users"></i> Guest Editors</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <tr>
+            <td><a href="https://vtsociety.org/files/ieeevts/2026-06/cfp_tvt-special-issue_adiav-1.pdf" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Special Issue on Advanced Driving Intelligence for Autonomous Vehicles
+            </a></td>
+            <td data-order="2026-08-01">
+                01 August 2026
+            </td>
+            <td>Xin Xia, Yi Lu Murphey, Mohammad H. (Vahid) Mamduhi, Neel P. Bhatt, Xiao Zhang, Evangelos Mintsis, Ehsan Hashemi</td>
+        </tr>
+        <tr>
+            <td><a href="https://vtsociety.org/files/ieeevts/2026-07/call-for-papers_underwater_tvt_2026_v1-1.pdf" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Special Issue on Edge Intelligence and In-Network Computing for Connected Autonomous Underwater Vehicles
+            </a></td>
+            <td data-order="2026-12-15">
+                15 December 2026
+            </td>
+            <td>Shahid Mumtaz, Chi Lin, Costas Pelekanakis, Lutz Lampe</td>
+        </tr></tbody>
+            </table>
+        </div>
+    </section>
+    <section class="journal-section">
+        <h2 class="journal-title">
+            <i class="fas fa-book"></i> npj Wireless Technology
+        </h2>
+        <div class="table-responsive">
+            <table id="table-14" class="table table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th><i class="fas fa-file-alt"></i> Paper Topic</th>
+                        <th><i class="fas fa-calendar-alt"></i> Submission Deadline</th>
+                        <th><i class="fas fa-users"></i> Guest Editors</th>
+                    </tr>
+                </thead>
+                <tbody>
+        <tr>
+            <td><a href="https://www.nature.com/collections/ihagddgeha" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Spatial Intelligence for Wireless Ecosystems: From Perception to Decision Making
+            </a></td>
+            <td data-order="2027-03-26">
+                26 March 2027
+            </td>
+            <td>Hongyang Du, Jiayi Zhang, Dong In Kim, Sumei Sun, Shiwen Mao</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/higgaabaji" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Underwater Wireless Communication and Networking: Towards Scalable, Resilient, and Green Solutions
+            </a></td>
+            <td data-order="2027-02-28">
+                28 February 2027
+            </td>
+            <td>Shahid Mumtaz, Anwer Al-Dulaimi, Muhammad Ikram Ashraf, Burak Kantarci, Jiajie Xu, Sravani Kurma</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/idbidaajei" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Lightweight Edge AI for Industrial IoT (Light eAI-IIoT)
+            </a></td>
+            <td data-order="2027-01-29">
+                29 January 2027
+            </td>
+            <td>Megumi Kaneko, Olivier Berder, Robin Gerzaguet, Julien Weber, MEng, Kenichi Kawamura</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/dahejbcjce" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> AI-Driven Internet of Vehicles
+            </a></td>
+            <td data-order="2027-01-07">
+                07 January 2027
+            </td>
+            <td>Lei Lei, Yi Ma, Weihua Zhuang, Ahmed Refaey Hussein, Jie Mei, Hou Lu</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/jabfiifabf" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> AI-native Network Digital Twin for 6G Metaverse
+            </a></td>
+            <td data-order="2026-12-17">
+                17 December 2026
+            </td>
+            <td>De Mi, Ziwei Wan, Zhen Gao, Dusit Niyato, Yue Wang, Sami Muhaidat</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/acidgebfid" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Beyond the Plane Waves: Advances in Near-Field Wireless Communication and Sensing
+            </a></td>
+            <td data-order="2026-11-26">
+                26 November 2026
+            </td>
+            <td>Abdulkadir Celik, Ahmed Elzanaty, Anna Guerra, Emil Bjornson, Onur Dizdar, Yuanwei Liu, Ahmed Eltawil</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/jabgadbjig" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Artificial Intelligence-Native Radio Access Networks
+            </a></td>
+            <td data-order="2026-10-26">
+                26 October 2026
+            </td>
+            <td>Howard H. Yang, Chenxi Liu, Xingqin Lin, Jemin Lee, Tony Q.S. Quek</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/jibcdicije" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> 6G Networks with Embedded Wireless Power &amp; Energy Harvesting
+            </a></td>
+            <td data-order="2026-10-20">
+                20 October 2026
+            </td>
+            <td>Jia Ye, Harald Haas, Ekram Hossain, Tamer El Batt, Cuiwei He, Jiangang Lu, M.S.</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/hecdcdaahf" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Sustainable and Intelligent Connectivity for Low-Altitude Wireless  Networks
+            </a></td>
+            <td data-order="2026-10-13">
+                13 October 2026
+            </td>
+            <td>Weijie Yuan, Jiacheng Wang, Dusit Niyato, Abbas Jamalipour, Maria Sabrina Greco, Braham Himed</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/iijfcheceh" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Wi-Fi 8 and Beyond: Exploring the Future of Wireless Connectivity
+            </a></td>
+            <td data-order="2026-11-15">
+                15 November 2026
+            </td>
+            <td>Francesca Meneghello, Francesc Wilhelmi, Cheng Chen, Katarzyna Kosek-Szott, Mukulika Maity</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/adaadbchbd" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> WireLESS Networking: crystal-free, battery-less and ultra-low power wireless communication
+            </a></td>
+            <td data-order="2026-10-03">
+                03 October 2026
+            </td>
+            <td>Danny Hughes, Sam Michiels, Yang Yang, Thomas Watteyne</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/bhhidcebed" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> AI-Driven Wireless Channel Modeling and Prediction
+            </a></td>
+            <td data-order="2026-09-30">
+                30 September 2026
+            </td>
+            <td>Meixia Tao, Jun Zhang, Ahmed Alkhateeb, Yong Zeng, Claude Oestges, Enrico Maria Vitucci</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/hccfecfhcd" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Wireless Sensing and Perception: Cutting-edge Innovations and Future Vision
+            </a></td>
+            <td data-order="2026-11-01">
+                01 November 2026
+            </td>
+            <td>Yasamin Mostofi, Ashutosh Sabharwal, Lili Qiu, Joerg Widmer</td>
+        </tr>
+        <tr>
+            <td><a href="https://www.nature.com/collections/hcjjigeedi" target="_blank"
+                   rel="noopener noreferrer">
+                <i class="fas fa-external-link-alt"></i> Advances in Wireless Positioning and Sensing
+            </a></td>
+            <td data-order="2026-10-31">
+                31 October 2026
+            </td>
+            <td>Aboelmagd Noureldin, Henk Wymeersch, René Jr Landry, Tareq Al-Naffouri, Li-Ta Hsu</td>
+        </tr></tbody>
+            </table>
+        </div>
+    </section>
+        </section>
     </main>
     <footer class="footer">
         <div class="container">
-            <p class="mb-0">This page is updated regularly.</p>
-            <p class="mb-0">Please check back for new opportunities.</p>
+            <p class="mb-0">Calls are collected from official publication sources
+                and updated regularly. Always verify details on the linked source page.</p>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -598,6 +1034,37 @@
     <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <script>
         $(function () {
+            const activateCollection = function (key, updateHash) {
+                $(".collection-tab").each(function () {
+                    const active = $(this).data("target") === key;
+                    $(this).toggleClass("active", active)
+                        .attr("aria-selected", active ? "true" : "false");
+                });
+                $(".collection-panel").each(function () {
+                    $(this).prop("hidden", $(this).data("collection") !== key);
+                });
+                if (updateHash) {
+                    history.replaceState(null, "", "#" + key);
+                }
+            };
+
+            $(".collection-tab").on("click", function () {
+                activateCollection($(this).data("target"), true);
+            }).on("keydown", function (event) {
+                if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+                const tabs = $(".collection-tab");
+                const current = tabs.index(this);
+                const next = event.key === "ArrowRight"
+                    ? (current + 1) % tabs.length
+                    : (current - 1 + tabs.length) % tabs.length;
+                tabs.eq(next).trigger("click").trigger("focus");
+            });
+
+            const initial = window.location.hash.slice(1);
+            if ($('.collection-tab[data-target="' + initial + '"]').length) {
+                activateCollection(initial, false);
+            }
+
             $("table").each(function () {
                 if ($(this).find("tbody tr").length) {
                     $(this).DataTable({
